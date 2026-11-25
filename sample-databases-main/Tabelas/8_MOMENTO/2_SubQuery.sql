@@ -6,4 +6,4 @@ FROM funcionarios
 WHERE cargo_id = 
     (SELECT cargo_id
      FROM cargos
-     WHERE cargo_nome = 'Contador');
+     WHERE cargo_nome = 'Gerente de Contabilidade');

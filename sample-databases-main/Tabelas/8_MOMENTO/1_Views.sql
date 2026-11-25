@@ -44,7 +44,7 @@ INNER JOIN funcionarios
 CREATE OR REPLACE VIEW `custos_escritorios` AS
 SELECT 
     suprimentos.suprimento_nome, 
-    suprimentos.quantidade, 
+    suprimentos.quantidade_comprada, 
     suprimentos.custo, 
     escritorios.escritorio_nome 
 	FROM suprimentos 
@@ -65,7 +65,7 @@ INNER JOIN  funcionarios
 CREATE OR REPLACE VIEW `relatorio_vendas` AS
 SELECT 
     vendas.venda_id as 'ticket', 
-    vendas.quantidade as 'quantidade_vendida', 
+    vendas.quantidade_vendida as 'quantidade_vendida', 
     produtos.produto_nome as 'produto',
     produtos.produto_id as 'produto_id',
     produtos.produto_price as 'preco_unitario',
@@ -82,7 +82,7 @@ INNER JOIN produtos
 CREATE OR REPLACE VIEW `vendas_funcionario_performance` AS
 SELECT 
   CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS funcionario_nome,
-  SUM(vendas.quantidade * produtos.produto_price) AS total_vendas
+  SUM(vendas.quantidade_vendida * produtos.produto_price) AS total_vendas
     FROM vendas
   INNER JOIN funcionarios ON vendas.funcionario_id = funcionarios.funcionario_id
   INNER JOIN produtos ON vendas.produto_id = produtos.produto_id
